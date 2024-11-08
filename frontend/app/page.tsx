@@ -16,10 +16,22 @@ function Map() {
   );
 }
 
-function FloatingButton() {
+function FloatingButton({ buttonType, side = "left", position = 0 }: { buttonType: string, side?: string, position?: number }) {
+
+  let style: React.CSSProperties = {};
+  
+  // set which side of the screen the button appears on
+  if (side === "right") {
+    style["right"] = "1rem";
+  } else {
+    style["left"] = "1rem";
+  }
+  
+    style["top"] = `${1 + 5 * position}rem`;
+
   return (
-    <div className="floating-button">
-      <Image src="/icons/burger.svg" alt="button" width="100" height="100" />
+    <div className="floating-button"  style={style}>
+      <Image src={`/icons/${buttonType}.svg`} alt="button" width="100" height="100" />
     </div>
   );
 }
@@ -27,7 +39,13 @@ function FloatingButton() {
 export default function Home() {
   return (
     <>
-      <FloatingButton />
+      <FloatingButton buttonType="burger" side="left" position={0} />
+      <FloatingButton buttonType="export" side="left" position={1} />
+      <FloatingButton buttonType="pencil" side="left" position={2} />
+
+      <FloatingButton buttonType="map" side="right" position={0} />
+      <FloatingButton buttonType="layers" side="right" position={1} />
+      <FloatingButton buttonType="point" side="right" position={2} />
       <Map />
     </>
   );

@@ -29,8 +29,6 @@ body {
 
 .floating-button {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
   background: #ffffff;
   color: rgb(235, 100, 100);
   border: none;
