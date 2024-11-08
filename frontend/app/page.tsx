@@ -27,6 +27,7 @@ function FloatingButton({ buttonType, side = "left", position = 0 }: { buttonTyp
     style["left"] = "1rem";
   }
   
+    // set the vertical position of the button
     style["top"] = `${1 + 5 * position}rem`;
 
   return (
