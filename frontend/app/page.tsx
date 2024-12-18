@@ -4,9 +4,10 @@ import Image from "next/image";
 import React, { Component } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-import { Burger, MantineProvider, Pill } from "@mantine/core"
+import { Burger, Button, Drawer, MantineProvider, Pill } from "@mantine/core"
 
 import TeamManager from "../components/teamManager";
+import FloatingButton from "../components/FloatingButton/FloatingButton";
 import { useDisclosure } from "@mantine/hooks";
 
 function Map() {
@@ -21,31 +22,11 @@ function Map() {
   );
 }
 
-function FloatingButton({ buttonType, side = "left", position = 0 }: { buttonType: string, side?: string, position?: number }) {
-
-  let style: React.CSSProperties = {};
-  
-  // set which side of the screen the button appears on
-  if (side === "right") {
-    style["right"] = "1rem";
-  } else {
-    style["left"] = "1rem";
-  }
-  
-    // set the vertical position of the button
-    style["top"] = `${1 + 5 * position}rem`;
-
-    const [opened, { toggle }] = useDisclosure();
-
-  return (
-    <div className="floating-button"  style={style}>
-      {/* <Image src={`/icons/${buttonType}.svg`} alt="button" width="100" height="100" /> */}
-      <Burger opened={opened} onClick={toggle} aria-label="Toggle navigation" />
-    </div>
-  );
-}
-
 export default function Home() {
+  const [opened, { open, close }] = useDisclosure(false);
+
+  console.log(opened)
+
   return (
     <MantineProvider>
       <FloatingButton buttonType="burger" side="left" position={0} />
@@ -57,6 +38,11 @@ export default function Home() {
       <FloatingButton buttonType="point" side="right" position={2} />
 
       {/* <TeamManager /> */}
+
+      {/* <Drawer offset={8} radius="md" opened={opened} onClose={close} title="Menu">
+        drawer content
+      </Drawer>
+      <Button onClick={open}>Open Drawer</Button> */}
 
       <Map />
     </MantineProvider>
