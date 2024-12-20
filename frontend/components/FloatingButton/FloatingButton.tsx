@@ -4,7 +4,7 @@ import React from "react";
 
 import classes from './FloatingButton.module.css'
 
-export default function FloatingButton({ buttonType, side = "left", position = 0 }: { buttonType: string, side?: string, position?: number, onClick?: () => void }) {
+export default function FloatingButton({ buttonType, side = "left", position = 0, onClick }: { buttonType: string, side?: string, position?: number, onClick?: () => void }) {
 
     let style: React.CSSProperties = {};
     
@@ -19,7 +19,7 @@ export default function FloatingButton({ buttonType, side = "left", position = 0
       style["top"] = `${1 + 5 * position}rem`;
   
     return (
-      <div className={classes.floatingButton}  style={style}>
+      <div className={classes.floatingButton}  style={style} onClick={onClick}>
         <img className={classes.floatingButtonImage} src={`/icons/${buttonType}.svg`} alt="button" />
       </div>
 
