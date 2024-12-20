@@ -1,0 +1,14 @@
+.mapContainer {
+    height: 100vh;
+    width: 100vw;
+    /* max-height: 100vh;
+    max-width: 100vw; */
+    /* position: relative; */
+    overflow: hidden;
+  }
+
+  .mapContainer img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+  }

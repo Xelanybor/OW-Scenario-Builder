@@ -1,4 +1,5 @@
 import FloatingButton from '../components/FloatingButton/FloatingButton'
+import Map from '../components/Map/Map'
 
 export default function HomePage() {
   return (
@@ -10,6 +11,8 @@ export default function HomePage() {
       <FloatingButton buttonType="map" side="right" position={0} />
       <FloatingButton buttonType="layers" side="right" position={1} />
       <FloatingButton buttonType="point" side="right" position={2} />
+
+      <Map />
     </>
   );
 }
