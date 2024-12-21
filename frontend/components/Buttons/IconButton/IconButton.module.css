@@ -30,4 +30,10 @@
   .iconButton > img {
     width: 2.5rem;
     height: 2.5rem;
+    /* Prevent the images from being highlighted/selected */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
   }
