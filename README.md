@@ -1,1 +1,3 @@
 # OW-Scenario-Builder
+
+OW Scenario Builder is a web-based tool for creating and editing scenarios for the game Overwatch, which can then be copied and loaded into a custom game through the game's workshop feature. The tool is intended for use in a scrim setting, where players can create custom scenarios to practice specific skills or strategies. This is still very early in development, and so most features are not implemented yet.
