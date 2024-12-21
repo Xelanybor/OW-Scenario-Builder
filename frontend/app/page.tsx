@@ -5,7 +5,7 @@ import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Drawer } from '@mantine/core';
 
-import FloatingButton from '../components/FloatingButton/FloatingButton'
+import FloatingButton from '../components/Buttons/FloatingButton/FloatingButton'
 import Map from '../components/Map/Map'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 

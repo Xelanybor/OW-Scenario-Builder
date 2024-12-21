@@ -1,5 +1,4 @@
-.floatingButton {
-    position: absolute;
+.iconButton {
     background: #ffffff;
     color: rgb(235, 100, 100);
     border: none;
@@ -16,19 +15,19 @@
     z-index: 5;
   }
   
-  .floatingButton:hover {
+  .iconButton:hover {
     background: #e0e0e0;
   }
   
-  .floatingButton:active {
+  .iconButton:active {
     background: #a3a3a3;
   }
   
-  .floatingButton:focus {
+  .iconButton:focus {
     outline: none;
   }
 
-  .floatingButton > img {
+  .iconButton > img {
     width: 2.5rem;
     height: 2.5rem;
   }
