@@ -1,0 +1,5 @@
+.openTeamManagerButton {
+    position: absolute;
+    top: -2em;
+    z-index: 1000;
+}
