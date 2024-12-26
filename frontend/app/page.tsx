@@ -4,11 +4,13 @@ import React from 'react';
 
 import { useDisclosure } from '@mantine/hooks';
 import { Drawer } from '@mantine/core';
+import { Text } from '@mantine/core';
 
 import FloatingContainer from '../components/FloatingContainer/FloatingContainer'
 import Map from '../components/Map/Map'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import IconButton from '@/components/Buttons/IconButton/IconButton';
+import CollapseButton from '@/components/Buttons/CollapseButton/CollapseButton';
 
 export default function HomePage() {
 
@@ -25,7 +27,11 @@ export default function HomePage() {
       </FloatingContainer>
 
       <FloatingContainer side="left" position={2}>
-        <IconButton  buttonType="pencil" />
+        <CollapseButton buttonType="pencil">
+            <Text>
+              content
+            </Text>
+        </CollapseButton>
       </FloatingContainer>
 
       <FloatingContainer side="right" position={0}>

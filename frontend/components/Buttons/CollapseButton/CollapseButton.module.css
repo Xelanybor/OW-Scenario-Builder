@@ -1,0 +1,13 @@
+.floatingContainer {
+    position: absolute;
+    background: #ffffff00;
+    border: none;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 5;
+  }
