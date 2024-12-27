@@ -9,8 +9,7 @@ import classes from './TeamManager.module.css';
 export default function TeamManager({toggleDrawer, drawerOpen} : {toggleDrawer: () => void, drawerOpen: boolean}) {
   return (
     <div>
-      {/* <button className={classes.openTeamManagerButton} onClick={toggleDrawer}>Team Manager</button> */}
-      <TeamManagerButton toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
+      <TeamManagerButton toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} style={{position: 'absolute', top: '-2.5em', left: '50%', transform: 'translateX(-50%)'}} />
     </div>
   );
 }
