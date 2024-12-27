@@ -10,6 +10,7 @@ import Map from '../components/Map/Map'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import IconButton from '@/components/Buttons/IconButton/IconButton';
 import TeamManager from '@/components/TeamManager/TeamManager';
+import TeamManagerButton from '@/components/Buttons/TeamManagerButton/TeamManagerButton';
 
 export default function HomePage() {
 
@@ -46,10 +47,10 @@ export default function HomePage() {
         <SidebarMenu />
       </Drawer>
 
-      <Button className='teamManagerButton' onClick={openTeamManager}>Team Manager</Button>
+      <TeamManagerButton style={{position: 'fixed', zIndex: '1', bottom: 0, left: '50%', transform: 'translateX(-50%)'}} toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} />
 
       <Drawer styles={{content: {overflow: 'visible'}}} position="bottom" opened={teamManagerOpened} onClose={closeTeamManager} padding="md">
-        <TeamManager toggleDrawer={toggleTeamManager} />
+        <TeamManager toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} />
       </Drawer>
 
       <Map />

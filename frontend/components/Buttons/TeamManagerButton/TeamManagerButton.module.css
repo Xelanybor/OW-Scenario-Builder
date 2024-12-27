@@ -1,0 +1,15 @@
+.teamManagerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ca7300;
+  color: white;
+  border: 1px solid #FA9C1D;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.teamManagerButton:hover {
+  background-color: #FA9C1D;
+}
