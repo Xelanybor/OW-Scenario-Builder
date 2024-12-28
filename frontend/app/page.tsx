@@ -47,9 +47,9 @@ export default function HomePage() {
         <SidebarMenu />
       </Drawer>
 
-      <TeamManagerButton style={{position: 'fixed', zIndex: '1', bottom: 0, left: '50%', transform: 'translateX(-50%)'}} toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} />
+      <TeamManagerButton style={{position: 'fixed', zIndex: '1', bottom: 0, left: '50%', transform: 'translateX(-50%)', opacity: teamManagerOpened ? 0 : 1}} toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} />
 
-      <Drawer styles={{content: {overflow: 'visible'}}} position="bottom" opened={teamManagerOpened} onClose={closeTeamManager} padding="md">
+      <Drawer styles={{content: {overflow: 'visible'}}} position="bottom" opened={teamManagerOpened} transitionProps={{transition: 'slide-up'}} onClose={closeTeamManager} padding="md" size="20%" withCloseButton={false}>
         <TeamManager toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} />
       </Drawer>
 
