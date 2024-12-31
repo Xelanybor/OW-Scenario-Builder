@@ -1,0 +1,46 @@
+.heroImage {
+  width: 8vw;
+  height: 8vw;
+  aspect-ratio: 1/1;
+  object-fit: scale-down;
+  justify-content: center;
+  align-items: center;
+  /* Prevent the images from being highlighted/selected */
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.playerContainer {
+  /* width: 10rem; */
+  /* height: 10rem; */
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.roleIcon {
+    width: 3rem;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    padding: 0.5em;
+    border-radius: 50%;
+    border-width: 10px;
+    border-color: black;
+    background-color: white;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* .roleIcon > svg {
+    display: flex;
+} */
