@@ -16,6 +16,7 @@
 .playerContainer {
   /* width: 10rem; */
   /* height: 10rem; */
+  top: 0;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -25,8 +26,8 @@
 }
 
 .roleIcon {
-    width: 3rem;
-    height: 3rem;
+    width: 4vw;
+    height: 4vw;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -36,13 +37,17 @@
     border-width: 10px;
     border-color: black;
     background-color: white;
-    bottom: -1.5rem;
+    bottom: -2vw;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* .roleIcon svg {
-    size: 5%;
+.roleIcon svg {
+    size: 4vw;
+}
+
+/* .roleIcon IconTankRole {
+    color: blue;
 } */
 
 /* .roleIcon > svg {
