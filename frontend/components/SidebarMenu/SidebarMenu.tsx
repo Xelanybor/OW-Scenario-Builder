@@ -4,8 +4,12 @@ import React, { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
+import { Button } from "@mantine/core";
+
 import SignInButton from "@/components/Buttons/SignInButton/SignInButton";
 import SignOutButton from "@/components/Buttons/SignOutButton/SignOutButton";
+
+import { createNewScenario } from "@/actions/scenarioAction";
 
 import classes from './SidebarMenu.module.css'
 
@@ -19,6 +23,7 @@ export default function SidebarMenu() {
                 <p>Signed in as <b>{session.user.name}</b></p>
                 {/* {session.user.image ? <img src={session.user.image as string} alt="User Image" width={50} height={50} /> : null} */}
                 <SignOutButton />
+                <Button onClick={async () => await createNewScenario(session.user?.discord_id!)}>New Scenario</Button>
             </div>
         );
     }
