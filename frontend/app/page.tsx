@@ -11,6 +11,7 @@ import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import IconButton from '@/components/Buttons/IconButton/IconButton';
 import TeamManager from '@/components/TeamManager/TeamManager';
 import TeamManagerButton from '@/components/Buttons/TeamManagerButton/TeamManagerButton';
+import { SessionProvider } from 'next-auth/react';
 
 export default function HomePage() {
 
@@ -18,7 +19,7 @@ export default function HomePage() {
   const [teamManagerOpened, {open: openTeamManager, close: closeTeamManager, toggle: toggleTeamManager}] = useDisclosure(false); // team manager state
 
   return (
-    <>
+    <SessionProvider>
       <FloatingContainer side="left" position={0}>
         <IconButton buttonType="burger" onClick={openMenu} />
       </FloatingContainer>
@@ -54,6 +55,6 @@ export default function HomePage() {
       </Drawer>
 
       <Map />
-    </>
+    </SessionProvider>
   );
 }
