@@ -1,11 +1,9 @@
 "use server"
 
 import { eq } from "drizzle-orm";
-import { time } from "drizzle-orm/pg-core";
 
 import { db } from "@/db"
 import { usersTable } from "@/db/schema"
-import { datetime } from "drizzle-orm/mysql-core";
 
 async function addUser(discordID: string, username: string) {
     let datetime = new Date();
