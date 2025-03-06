@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import SignInButton from "@/components/Buttons/SignInButton/SignInButton";
-import SignOutButton from "../Buttons/SignOutButton/SignOutButton";
+import SignOutButton from "@/components/Buttons/SignOutButton/SignOutButton";
 
 import classes from './SidebarMenu.module.css'
 
