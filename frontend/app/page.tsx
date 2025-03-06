@@ -9,13 +9,14 @@ import FloatingContainer from '../components/FloatingContainer/FloatingContainer
 import Map from '../components/Map/Map'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import IconButton from '@/components/Buttons/IconButton/IconButton';
+import { SessionProvider } from 'next-auth/react';
 
 export default function HomePage() {
 
   const [opened, {open, close}] = useDisclosure(false);
 
   return (
-    <>
+    <SessionProvider>
       <FloatingContainer side="left" position={0}>
         <IconButton buttonType="burger" onClick={open} />
       </FloatingContainer>
@@ -45,6 +46,6 @@ export default function HomePage() {
       </Drawer>
 
       <Map />
-    </>
+    </SessionProvider>
   );
 }
