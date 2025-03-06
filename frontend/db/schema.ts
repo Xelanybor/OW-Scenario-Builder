@@ -9,7 +9,7 @@ export const usersTable = pgTable("users", {
 
 export const scenariosTable = pgTable("scenarios", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    name: varchar({ length: 255 }).notNull(),
+    name: varchar({ length: 255 }).notNull().unique(),
     ownerID: integer().notNull().references(() => usersTable.id),
     createdAt: timestamp().notNull(),
     lastEdited: timestamp().notNull(),
