@@ -3,10 +3,12 @@ import Discord from "next-auth/providers/discord";
 
 import { JWT } from "next-auth/jwt"
 
+import { onUserLogIn } from "./actions/userAction";
+
 declare module "next-auth" {
   interface User {
     id?: string
-    discord_id?: number
+    discord_id?: string
     name?: string | null
     email?: string | null
     image?: string | null
@@ -16,7 +18,7 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT {
-    id?: number
+    id?: string
   }
 }
 
@@ -45,8 +47,9 @@ export const { handlers, signIn, signOut, auth} = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) { // User is available during sign-in
+        await onUserLogIn(user.discord_id!, user.name!)
         token.id = user.discord_id
       }
       return token
