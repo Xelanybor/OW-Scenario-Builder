@@ -8,6 +8,7 @@ import { Button, SimpleGrid } from "@mantine/core";
 import { ScenarioMetadata } from "@/types/Scenario";
 
 import { createNewScenario } from "@/actions/scenarioAction";
+import ScenarioTile from "./ScenarioTile/ScenarioTile";
 
 export default function ScenarioSelector() {
 
@@ -28,9 +29,9 @@ export default function ScenarioSelector() {
     if (!session) return (<></>)
     else return (
         <>
-          <SimpleGrid cols={2}>
+          <SimpleGrid cols={1}>
               {scenarios.map(scenario => {
-                  return <div key={scenario.id}>{scenario.name}</div>
+                  return <ScenarioTile scenario={scenario} key={scenario.id} />
               })}
           </SimpleGrid>
 
