@@ -28,5 +28,9 @@ export async function createNewScenario(ownerDiscordID: string) {
 
 export async function getScenarios(ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
-    return await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
+    let scenarios = await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
+    for (let scenario of scenarios) {
+        scenario.scenarioData = JSON.parse(scenario.scenarioData);
+    }
+    return scenarios;
 }
