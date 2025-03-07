@@ -1,5 +1,7 @@
 "use server"
 
+import { eq } from "drizzle-orm";
+
 import { db } from "@/db"
 import { usersTable, scenariosTable } from "@/db/schema"
 
@@ -22,4 +24,9 @@ export async function createNewScenario(ownerDiscordID: string) {
             ],
         }),
     })
+}
+
+export async function getScenarios(ownerDiscordID: string) {
+    let owner = await getUser(ownerDiscordID);
+    return await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
 }
