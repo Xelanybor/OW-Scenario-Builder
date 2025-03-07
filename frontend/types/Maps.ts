@@ -1,49 +1,96 @@
-export enum ControlMap {
-    AntarcticPeninsula = 'Antarctic Peninsula',
-    Busan = 'Busan',
-    Ilios = 'Ilios',
-    LijiangTower = 'Lijiang Tower',
-    Nepal = 'Nepal',
-    Oasis = 'Oasis',
-    Samoa = 'Samoa',
-}
+import { z } from 'zod';
 
-export enum EscortMap {
-    CircuitRoyal = 'Circuit Royal',
-    Dorado = 'Dorado',
-    Havana = 'Havana',
-    Junkertown = 'Junkertown',
-    Rialto = 'Rialto',
-    Route66 = 'Route 66',
-    ShambaliMonastery = 'Shambali Monastery',
-    WatchpointGibraltar = 'Watchpoint: Gibraltar',
-}
+export const Map = z.enum([
+    'Antarctic Peninsula',
+    'Busan',
+    'Ilios',
+    'Lijiang Tower',
+    'Nepal',
+    'Oasis',
+    'Samoa',
+    'Circuit Royal',
+    'Dorado',
+    'Havana',
+    'Junkertown',
+    'Rialto',
+    'Route 66',
+    'Shambali Monastery',
+    'Watchpoint: Gibraltar',
+    'New Junk City',
+    'Suravasa',
+    'Blizzard World',
+    'Eichenwalde',
+    'Hollywood',
+    'King\'s Row',
+    'Midtown',
+    'Numbani',
+    'Paraíso',
+    'Colosseo',
+    'Esperança',
+    'New Queen Street',
+    'Runasapi',
+    'Hanaoka',
+    'Throne of Anubis',
+])
 
-export enum FlashpointMap {
-    NewJunkCity = 'New Junk City',
-    Suravasa = 'Suravasa',
-}
+export type Map = z.infer<typeof Map>;
 
-export enum HybridMap {
-    BlizzardWorld = 'Blizzard World',
-    Eichenwalde = 'Eichenwalde',
-    Hollywood = 'Hollywood',
-    KingsRow = 'King\'s Row',
-    Midtown = 'Midtown',
-    Numbani = 'Numbani',
-    Paraiso = 'Paraíso',
-}
+export const ControlMap = Map.extract([
+    'Antarctic Peninsula',
+    'Busan',
+    'Ilios',
+    'Lijiang Tower',
+    'Nepal',
+    'Oasis',
+    'Samoa',
+])
 
-export enum PushMap {
-    Colosseo = 'Colosseo',
-    Esperanca = 'Esperança',
-    NewQueenStreet = 'New Queen Street',
-    Runasapi = 'Runasapi',
-}
+export type ControlMap = z.infer<typeof ControlMap>;
 
-export enum ClashMap {
-    Hanaoka = 'Hanaoka',
-    ThroneOfAnubis = 'Throne of Anubis',
-}
+export const EscortMap = Map.extract([
+    'Circuit Royal',
+    'Dorado',
+    'Havana',
+    'Junkertown',
+    'Rialto',
+    'Route 66',
+    'Shambali Monastery',
+    'Watchpoint: Gibraltar',
+])
 
-export type Map = ControlMap | EscortMap | FlashpointMap | HybridMap | PushMap | ClashMap;
+export type EscortMap = z.infer<typeof EscortMap>;
+
+export const FlashpointMap = Map.extract([
+    'New Junk City',
+    'Suravasa',
+])
+
+export type FlashpointMap = z.infer<typeof FlashpointMap>;
+
+export const HybridMap = Map.extract([
+    'Blizzard World',
+    'Eichenwalde',
+    'Hollywood',
+    'King\'s Row',
+    'Midtown',
+    'Numbani',
+    'Paraíso',
+])
+
+export type HybridMap = z.infer<typeof HybridMap>;
+
+export const PushMap = Map.extract([
+    'Colosseo',
+    'Esperança',
+    'New Queen Street',
+    'Runasapi',
+])
+
+export type PushMap = z.infer<typeof PushMap>;
+
+export const ClashMap = Map.extract([
+    'Hanaoka',
+    'Throne of Anubis',
+])
+
+export type ClashMap = z.infer<typeof ClashMap>;

@@ -1,56 +1,105 @@
-export enum SupportHero {
-    Ana = 'Ana',
-    Baptiste = 'Baptiste',
-    Brigitte = 'Brigitte',
-    Illari = 'Illari',
-    Juno = 'Juno',
-    Kiriko = 'Kiriko',
-    Lifeweaver = 'Lifeweaver',
-    Lucio = 'Lúcio',
-    Mercy = 'Mercy',
-    Moira = 'Moira',
-    Zenyatta = 'Zenyatta',
-}
+import { z } from 'zod';
 
-export enum DamageHero {
-    Ashe = 'Ashe',
-    Bastion = 'Bastion',
-    Cassidy = 'Cassidy',
-    Echo = 'Echo',
-    Genji = 'Genji',
-    Hanzo = 'Hanzo',
-    Junkrat = 'Junkrat',
-    Mei = 'Mei',
-    Pharah = 'Pharah',
-    Reaper = 'Reaper',
-    Sojourn = 'Sojourn',
-    Soldier76 = 'Soldier: 76',
-    Sombra = 'Sombra',
-    Symmetra = 'Symmetra',
-    Torbjorn = 'Torbjörn',
-    Tracer = 'Tracer',
-    Venture = 'Venture',
-    Widowmaker = 'Widowmaker',
-}
+export const Hero = z.enum([
+    'Ana',
+    'Ashe',
+    'Baptiste',
+    'Bastion',
+    'Brigitte',
+    'Cassidy',
+    'D.Va',
+    'Doomfist',
+    'Echo',
+    'Genji',
+    'Hanzo',
+    'Hazard',
+    'Illari',
+    'Junker Queen',
+    'Junkrat',
+    'Juno',
+    'Kiriko',
+    'Lifeweaver',
+    'Lúcio',
+    'Mauga',
+    'Mei',
+    'Mercy',
+    'Moira',
+    'Orisa',
+    'Pharah',
+    'Ramattra',
+    'Reaper',
+    'Reinhardt',
+    'Roadhog',
+    'Sigma',
+    'Sojourn',
+    'Soldier: 76',
+    'Sombra',
+    'Symmetra',
+    'Torbjörn',
+    'Tracer',
+    'Venture',
+    'Widowmaker',
+    'Winston',
+    'Wrecking Ball',
+    'Zarya',
+    'Zenyatta',
+])
 
-export enum TankHero {
-    Dva = 'D.Va',
-    Doomfist = 'Doomfist',
-    Hazard = 'Hazard',
-    JunkerQueen = 'Junker Queen',
-    Mauga = 'Mauga',
-    Orisa = 'Orisa',
-    Ramattra = 'Ramattra',
-    Reinhardt = 'Reinhardt',
-    Roadhog = 'Roadhog',
-    Sigma = 'Sigma',
-    Winston = 'Winston',
-    WreckingBall = 'Wrecking Ball',
-    Zarya = 'Zarya',
-}
+export type Hero = z.infer<typeof Hero>;
 
-export type Hero = SupportHero | DamageHero | TankHero;
+export const SupportHero = Hero.extract([
+    'Ana',
+    'Baptiste',
+    'Brigitte',
+    'Illari',
+    'Juno',
+    'Kiriko',
+    'Lifeweaver',
+    'Lúcio',
+    'Mercy',
+    'Moira',
+    'Zenyatta',
+])
 
-function getValue(hero: Hero) {
-    return hero.valueOf();
-}
+export type SupportHero = z.infer<typeof SupportHero>;
+
+export const DamageHero = Hero.extract([
+    'Ashe',
+    'Bastion',
+    'Cassidy',
+    'Echo',
+    'Genji',
+    'Hanzo',
+    'Junkrat',
+    'Mei',
+    'Pharah',
+    'Reaper',
+    'Sojourn',
+    'Soldier: 76',
+    'Sombra',
+    'Symmetra',
+    'Torbjörn',
+    'Tracer',
+    'Venture',
+    'Widowmaker',
+])
+
+export type DamageHero = z.infer<typeof DamageHero>;
+
+export const TankHero = Hero.extract([
+    'D.Va',
+    'Doomfist',
+    'Hazard',
+    'Junker Queen',
+    'Mauga',
+    'Orisa',
+    'Ramattra',
+    'Reinhardt',
+    'Roadhog',
+    'Sigma',
+    'Winston',
+    'Wrecking Ball',
+    'Zarya',
+])
+
+export type TankHero = z.infer<typeof TankHero>;
