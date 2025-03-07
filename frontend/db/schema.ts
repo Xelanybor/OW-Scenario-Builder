@@ -1,4 +1,4 @@
-import { integer, pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgTable, varchar, timestamp, unique } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -9,9 +9,11 @@ export const usersTable = pgTable("users", {
 
 export const scenariosTable = pgTable("scenarios", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    name: varchar({ length: 255 }).notNull().unique(),
+    name: varchar({ length: 255 }).notNull(),
     ownerID: integer().notNull().references(() => usersTable.id),
     createdAt: timestamp().notNull(),
     lastEdited: timestamp().notNull(),
     scenarioData: varchar({ length: 10000 }).notNull(),
-});
+}, (t) => [
+    unique().on(t.name, t.ownerID),
+]);

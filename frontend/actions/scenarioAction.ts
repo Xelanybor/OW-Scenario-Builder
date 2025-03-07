@@ -11,7 +11,7 @@ export async function createNewScenario(ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
     let currentTime = new Date();
     await db.insert(scenariosTable).values({
-        name: "New Scenario",
+        name: await getNextAvailableName("New Scenario", ownerDiscordID),
         ownerID: owner.id,
         createdAt: currentTime,
         lastEdited: currentTime,
@@ -24,6 +24,20 @@ export async function createNewScenario(ownerDiscordID: string) {
             ],
         }),
     })
+}
+
+async function getNextAvailableName(scenarioName: string, ownerDiscordID: string) {
+    let owner = await getUser(ownerDiscordID);
+    let scenarios = await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
+    let names = scenarios.map(scenario => scenario.name);
+    if (!names.includes(scenarioName)) {
+        return scenarioName;
+    }
+    let i = 1;
+    while (names.includes(`${scenarioName} (${i})`)) {
+        i++;
+    }
+    return `${scenarioName} (${i})`;
 }
 
 export async function getScenarios(ownerDiscordID: string) {
