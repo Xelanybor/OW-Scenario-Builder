@@ -25,11 +25,7 @@ export default function SidebarMenu() {
                 {/* {session.user.image ? <img src={session.user.image as string} alt="User Image" width={50} height={50} /> : null} */}
                 <SignOutButton />
 
-                <ScenarioSelector scenarios={[
-                    { id: 1, name: "Scenario 1" },
-                    { id: 2, name: "Scenario 2" },
-                    { id: 3, name: "Scenario 3" },
-                ]} />
+                <ScenarioSelector />
 
                 <Button onClick={async () => await createNewScenario(session.user?.discord_id!)}>New Scenario</Button>
             </div>
