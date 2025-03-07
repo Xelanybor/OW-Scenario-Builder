@@ -18,7 +18,7 @@ export default function ScenarioSelector() {
                 .then(res => res.json())
                 .then(data => setScenarios(data));
         }
-    }, [session?.user]);
+    }, []);
 
     return <SimpleGrid cols={2}>
         {scenarios.map(scenario => {
