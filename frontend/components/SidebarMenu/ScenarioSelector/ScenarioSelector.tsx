@@ -3,14 +3,19 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
-import { SimpleGrid } from "@mantine/core";
+import { Button, SimpleGrid } from "@mantine/core";
 
 import { ScenarioMetadata } from "@/types/Scenario";
+
+import { createNewScenario } from "@/actions/scenarioAction";
 
 export default function ScenarioSelector() {
 
     const { data: session } = useSession();
     const [scenarios, setScenarios] = useState<ScenarioMetadata[]>([]);
+    const [scenarioListOutOfDate, setScenarioListOutOfDate] = useState(true);
+
+    var test = 0;
 
     useEffect(() => {
         if (session?.user) {
@@ -18,12 +23,22 @@ export default function ScenarioSelector() {
                 .then(res => res.json())
                 .then(data => setScenarios(data));
         }
-    }, []);
+    }, [scenarioListOutOfDate]);
 
-    return <SimpleGrid cols={2}>
-        {scenarios.map(scenario => {
-            return <div key={scenario.id}>{scenario.name}</div>
-        })}
-    </SimpleGrid>
+    if (!session) return (<></>)
+    else return (
+        <>
+          <SimpleGrid cols={2}>
+              {scenarios.map(scenario => {
+                  return <div key={scenario.id}>{scenario.name}</div>
+              })}
+          </SimpleGrid>
+
+          <Button onClick={async () => {
+            await createNewScenario(session.user?.discord_id!);
+            setScenarioListOutOfDate(!scenarioListOutOfDate);
+            }}>New Scenario</Button>
+        </>
+    )
 
 }
