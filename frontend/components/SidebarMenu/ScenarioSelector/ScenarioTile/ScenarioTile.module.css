@@ -1,0 +1,34 @@
+.scenarioTile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: rgb(194, 194, 194);
+}
+
+.scenarioTile:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.scenarioTileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.scenarioTileTitle {
+    float: left;
+    font-weight: bold;
+}
+
+.scenarioTileMap {
+    float: right;
+}
