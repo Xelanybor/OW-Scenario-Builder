@@ -25,6 +25,11 @@
   background-color: white;
 }
 
+.playerContainer:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
 .roleIcon {
     width: 4vw;
     height: 4vw;
