@@ -3,27 +3,40 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/db"
-import { usersTable, scenariosTable } from "@/db/schema"
+import { scenariosTable } from "@/db/schema"
+
+import { ScenarioMetadata } from "@/utils/validation";
 
 import { getUser } from "@/actions/userAction";
 
 export async function createNewScenario(ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
     let currentTime = new Date();
-    await db.insert(scenariosTable).values({
-        name: await getNextAvailableName("New Scenario", ownerDiscordID),
-        ownerID: owner.id,
-        createdAt: currentTime,
-        lastEdited: currentTime,
-        scenarioData: JSON.stringify({
-            map: "Oasis",
-            point: "0",
-            teams: [
-                { players: [] },
-                { players: [] }
-            ],
-        }),
-    })
+
+    let scenario;
+
+    try {
+        scenario = ScenarioMetadata.parse({
+            name: await getNextAvailableName("New Scenario", ownerDiscordID),
+            ownerID: owner.id,
+            createdAt: currentTime.toISOString(),
+            lastEdited: currentTime.toISOString(),
+            scenarioData: JSON.stringify({
+                map: "Oasis",
+                point: 0,
+                teams: [
+                    { players: [] },
+                    { players: [] }
+                ],
+            }),
+        });
+        
+    }
+    catch (e) {
+        throw new Error("Invalid scenario data");
+    }
+
+    await db.insert(scenariosTable).values(scenario);
 }
 
 async function getNextAvailableName(scenarioName: string, ownerDiscordID: string) {
