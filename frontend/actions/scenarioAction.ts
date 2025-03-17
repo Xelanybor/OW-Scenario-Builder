@@ -53,8 +53,7 @@ export async function createNewScenario(ownerDiscordID: string) {
  * @returns a unique name for the scenario
  */
 async function getNextAvailableName(scenarioName: string, ownerDiscordID: string) {
-    let owner = await getUser(ownerDiscordID);
-    let scenarios = await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
+    let scenarios = await getScenarios(ownerDiscordID);
     let names = scenarios.map(scenario => scenario.name);
     if (!names.includes(scenarioName)) {
         return scenarioName;
