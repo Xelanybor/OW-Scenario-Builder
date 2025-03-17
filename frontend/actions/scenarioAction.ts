@@ -9,6 +9,11 @@ import { ScenarioMetadata } from "@/utils/validation";
 
 import { getUser } from "@/actions/userAction";
 
+/**
+ * Create a new scenario in the database with the given ownerDiscordID.
+ * 
+ * @param ownerDiscordID Discord user ID of the user creating the scenario
+ */
 export async function createNewScenario(ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
     let currentTime = new Date();
@@ -39,6 +44,14 @@ export async function createNewScenario(ownerDiscordID: string) {
     await db.insert(scenariosTable).values(scenario);
 }
 
+/**
+ * Check if there already exists a scenario with the given name owned by the same user.
+ * If there is, append a number to the end of the name to make it unique. If not, return the name as is. Numbers are appended like so: "New Scenario" -> "New Scenario (1)" -> "New Scenario (2)" -> ...
+ * 
+ * @param scenarioName desired name of the scenario
+ * @param ownerDiscordID Discord user ID of the user creating the scenario
+ * @returns a unique name for the scenario
+ */
 async function getNextAvailableName(scenarioName: string, ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
     let scenarios = await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
@@ -53,6 +66,11 @@ async function getNextAvailableName(scenarioName: string, ownerDiscordID: string
     return `${scenarioName} (${i})`;
 }
 
+/**
+ * Get all scenarios owned by the user with the given Discord user ID.
+ * @param ownerDiscordID Discord user ID of the user
+ * @returns an array of all scenarios owned by the user
+ */
 export async function getScenarios(ownerDiscordID: string) {
     let owner = await getUser(ownerDiscordID);
     let scenarios = await db.select().from(scenariosTable).where(eq(scenariosTable.ownerID, owner.id));
