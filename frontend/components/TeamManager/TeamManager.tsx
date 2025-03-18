@@ -14,8 +14,8 @@ export default function TeamManager({toggleDrawer, drawerOpen} : {toggleDrawer: 
     <div>
       <TeamManagerButton toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} style={{position: 'absolute', top: '-2.5em', left: '50%', transform: 'translateX(-50%)'}} />
       <Group className={classes.teamContainers} justify='center' gap={'sm'} grow={true}>
-        <TeamContainer color='blue' />
-        <TeamContainer color='red' />
+        <TeamContainer teamColour='blue' />
+        <TeamContainer teamColour='red' />
       </Group>
         
     </div>

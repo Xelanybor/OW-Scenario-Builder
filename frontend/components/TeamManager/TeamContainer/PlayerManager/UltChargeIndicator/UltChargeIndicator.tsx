@@ -6,13 +6,13 @@ import { IconCheck } from '@tabler/icons-react';
 
 import classes from "./UltChargeIndicator.module.css"
 
-export default function UltChargeIndicator({ charge }: { charge: number }) {
+export default function UltChargeIndicator({ charge, teamColour }: { charge: number, teamColour: React.CSSProperties['color'] }) {
     return (
         <div className={classes.ultCharge}>
             <RingProgress
             size={60}
             thickness={8}
-            rootColor='rgb(49, 49, 49)'
+            rootColor='rgb(65, 65, 65)'
               label={
                 charge != 100 ? <Text size="s" ta="center" fw={700} fs="italic" c="white">
                   {charge}
@@ -22,7 +22,7 @@ export default function UltChargeIndicator({ charge }: { charge: number }) {
                   </Center>
               }
               sections={[
-                { value: charge, color: charge == 100 ? 'blue' : 'orange' },
+                { value: charge, color: charge == 100 ? teamColour! : 'orange' },
               ]}
             />
         </div>

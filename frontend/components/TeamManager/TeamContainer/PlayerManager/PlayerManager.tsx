@@ -19,7 +19,7 @@ import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroe
 import UltChargeIndicator from './UltChargeIndicator/UltChargeIndicator'
 import IconRole from '@/components/Icons/RoleIcons/IconRole'
 
-export default function PlayerManager({ id } : { id: number }) {
+export default function PlayerManager({ id, teamColour } : { id: number, teamColour: React.CSSProperties['color'] }) {
 
   const [configureHeroOpened, {open: configureHeroOpen, close: configureHeroClose}] = useDisclosure(false);
 
@@ -54,7 +54,7 @@ export default function PlayerManager({ id } : { id: number }) {
         <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(hero)}.png`} alt={hero} width={256} height={256} />
         <div className={classes.footer}>
           <IconRole role={role} />
-          <UltChargeIndicator charge={charge} />
+          <UltChargeIndicator charge={charge} teamColour={teamColour} />
         </div>
     
       </div>
