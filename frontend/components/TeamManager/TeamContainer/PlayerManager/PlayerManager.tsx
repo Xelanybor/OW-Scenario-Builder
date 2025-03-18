@@ -13,6 +13,8 @@ import IconDamageRole from '@/components/Icons/RoleIcons/IconDamageRole/IconDama
 import IconSupportRole from '@/components/Icons/RoleIcons/IconSupportRole/IconSupportRole'
 import HeroSelector from './HeroSelector/HeroSelector'
 
+import { getHeroImageName } from '@/utils/filenames'
+
 import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroes'
 
 export default function PlayerManager({ id } : { id: number }) {
@@ -47,7 +49,7 @@ export default function PlayerManager({ id } : { id: number }) {
         setChangesMade(false); // When the modal is opened no changes will have been made yet
         configureHeroOpen()
         }}>
-        <Image className={classes.heroImage} src={`/heroes/${hero}.png`} alt={hero} width={256} height={256} />
+        <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(hero)}.png`} alt={hero} width={256} height={256} />
         <div className={classes.roleIcon}>
           { role === 'Tank' && <IconTankRole /> }
           { role === 'Damage' && <IconDamageRole /> }

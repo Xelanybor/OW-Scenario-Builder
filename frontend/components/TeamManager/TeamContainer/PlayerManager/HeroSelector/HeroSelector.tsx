@@ -4,6 +4,8 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { Combobox, Group, Input, InputBase, Text, useCombobox, Button, Slider } from '@mantine/core'
 import Image from 'next/image'
 
+import { getHeroImageName } from '@/utils/filenames'
+
 import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroes'
 
 import classes from './HeroSelector.module.css'
@@ -12,7 +14,7 @@ function HeroOption({ hero }: { hero: Hero }) {
     return (
 
         <Group className={classes.heroOption}>
-          <Image src={`/heroes/${hero}.png`} alt={hero} width={50} height={50} />
+          <Image src={`/heroes/${getHeroImageName(hero)}.png`} alt={hero} width={50} height={50} />
           <div>
             <Text fz="sm" fw={500}>
               {hero}
