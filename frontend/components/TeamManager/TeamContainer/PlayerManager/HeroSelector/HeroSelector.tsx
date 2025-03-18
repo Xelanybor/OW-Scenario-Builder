@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroes'
 
 import classes from './HeroSelector.module.css'
-import { set } from 'zod'
 
 function HeroOption({ hero }: { hero: Hero }) {
     return (
@@ -23,14 +22,27 @@ function HeroOption({ hero }: { hero: Hero }) {
     )
 }
 
-export default function HeroSelector({ hero, setHero, charge, setCharge, role, closeModal }:
+export default function HeroSelector({ hero, setHero, charge, setCharge, setChangesMade, role, closeModal }:
   { hero: Hero,
     setHero: Dispatch<SetStateAction<Hero>>,
     charge: number,
     setCharge: Dispatch<SetStateAction<number>>,
+    setChangesMade: Dispatch<SetStateAction<boolean>>,
     role: HeroRole,
     closeModal: () => void
   }) {
+
+    const detectChange = (setterFunction: (value: any) => void) => {
+        return (value: any) => {
+          setterFunction(value);
+          if (typeof value === "string") {
+            setChangesMade(value != hero || newCharge != charge);
+          }
+          else if (typeof value === "number") {
+            setChangesMade(newHero != hero || value != charge);
+          }
+        }
+    };
     
     const combobox = useCombobox({
         onDropdownClose: () => combobox.resetSelectedOption(),
@@ -70,7 +82,7 @@ export default function HeroSelector({ hero, setHero, charge, setCharge, role, c
           store={combobox}
           withinPortal={true}
           onOptionSubmit={(hero) => {
-            setNewHero(hero as Hero); // The combobox should only contain valid Hero options
+            detectChange(setNewHero)(hero as Hero); // The combobox should only contain valid Hero options
             combobox.closeDropdown();
           }}
         >
@@ -105,7 +117,7 @@ export default function HeroSelector({ hero, setHero, charge, setCharge, role, c
             { value: 50, label: '50%' },
             { value: 75, label: '75%' },
             { value: 100, label: '100%' },
-          ]} value={newCharge} onChange={setNewCharge} />
+          ]} value={newCharge} onChange={detectChange(setNewCharge)} />
           <Button onClick={() => {
             setHero(newHero);
             setCharge(newCharge);

@@ -39,10 +39,14 @@ export default function PlayerManager({ id } : { id: number }) {
 
   const [hero, setHero] = React.useState<Hero>(defaultHero);
   const [charge, setCharge] = React.useState<number>(0);
+  const [changesMade, setChangesMade] = React.useState<boolean>(false);
 
   return (
     <>
-      <div className={classes.playerContainer} onClick={configureHeroOpen}>
+      <div className={classes.playerContainer} onClick={() => {
+        setChangesMade(false); // When the modal is opened no changes will have been made yet
+        configureHeroOpen()
+        }}>
         <Image className={classes.heroImage} src={`/heroes/${hero}.png`} alt={hero} width={256} height={256} />
         <div className={classes.roleIcon}>
           { role === 'Tank' && <IconTankRole /> }
@@ -51,8 +55,24 @@ export default function PlayerManager({ id } : { id: number }) {
         </div>
     
       </div>
-      <Modal opened={configureHeroOpened} onClose={configureHeroClose} title={`Configure ${role} Hero`}>
-        <HeroSelector hero={hero} setHero={setHero} charge={charge} setCharge={setCharge} role={role} closeModal={configureHeroClose} />
+      <Modal
+        opened={configureHeroOpened}
+        onClose={() => {
+          if (changesMade) {
+            // If changes have been made, ask the user if they want to save them
+            if (confirm('You have made changes to this player. Closing this window will discard these changes. Are you sure?')) {
+              // Save the changes
+              setChangesMade(false);
+              configureHeroClose();
+            }
+          }
+          else {
+            configureHeroClose();
+          }
+        }}
+        title={`Configure ${role} Hero`}
+      >
+        <HeroSelector hero={hero} setHero={setHero} charge={charge} setCharge={setCharge} setChangesMade={setChangesMade} role={role} closeModal={configureHeroClose} />
       </Modal>
     </>
   )
