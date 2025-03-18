@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { Modal } from '@mantine/core'
+import { Modal, RingProgress, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 
 import Image from 'next/image'
@@ -16,6 +16,8 @@ import HeroSelector from './HeroSelector/HeroSelector'
 import { getHeroImageName } from '@/utils/filenames'
 
 import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroes'
+import UltChargeIndicator from './UltChargeIndicator/UltChargeIndicator'
+import IconRole from '@/components/Icons/RoleIcons/IconRole'
 
 export default function PlayerManager({ id } : { id: number }) {
 
@@ -50,10 +52,9 @@ export default function PlayerManager({ id } : { id: number }) {
         configureHeroOpen()
         }}>
         <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(hero)}.png`} alt={hero} width={256} height={256} />
-        <div className={classes.roleIcon}>
-          { role === 'Tank' && <IconTankRole /> }
-          { role === 'Damage' && <IconDamageRole /> }
-          { role === 'Support' && <IconSupportRole /> }
+        <div className={classes.footer}>
+          <IconRole role={role} />
+          <UltChargeIndicator charge={charge} />
         </div>
     
       </div>
