@@ -8,9 +8,6 @@ import { useDisclosure } from '@mantine/hooks'
 import Image from 'next/image'
 
 import classes from './PlayerManager.module.css'
-import IconTankRole from '@/components/Icons/RoleIcons/IconTankRole/IconTankRole'
-import IconDamageRole from '@/components/Icons/RoleIcons/IconDamageRole/IconDamageRole'
-import IconSupportRole from '@/components/Icons/RoleIcons/IconSupportRole/IconSupportRole'
 import HeroSelector from './HeroSelector/HeroSelector'
 
 import { getHeroImageName } from '@/utils/filenames'
