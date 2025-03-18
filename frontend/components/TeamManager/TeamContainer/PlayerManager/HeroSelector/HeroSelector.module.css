@@ -1,0 +1,14 @@
+.dropdownOptions {
+    max-height: 60vh; /* Set the maximum height for the dropdown */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.ultChargeSlider {
+    width: 98%;
+    margin-bottom: 10%;
+}
+
+.heroSelectDropdown {
+    margin-top: 1%;
+    margin-bottom: 5%;
+}

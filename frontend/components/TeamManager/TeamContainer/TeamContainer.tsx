@@ -12,15 +12,7 @@ export default function TeamContainer({color}: {color: React.CSSProperties['colo
   return (
     <Group classNames={{root: classes.teamContainer}} justify='center' gap='1vw'>
       { [0,1,2,3,4].map((index) => {
-
-        // Follow OWCS role order: Damage, Damage, Tank, Support, Support
-        let role: "damage" | "tank" | "support";
-        if (index === 0 || index === 1) role = "damage";
-        else if (index === 2) role = "tank";
-        else role = "support";
-
-
-        return <PlayerManager key={index} role={role} />
+        return <PlayerManager key={index} id={index} />
       }) }
     </Group>
   );
