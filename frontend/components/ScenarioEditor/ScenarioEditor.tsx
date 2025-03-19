@@ -15,12 +15,14 @@ import IconButton from '@/components/Buttons/IconButton/IconButton';
 
 import { Scenario } from '@/types/Scenario';
 import { Hero } from '@/types/Heroes';
+import MapSelector from '../MapSelector/MapSelector';
 
 export default function ScenarioEditor() {
 
   const [menuOpened, {open: openMenu, close: closeMenu}] = useDisclosure(false); // side menu state
   const [teamManagerOpened, {open: openTeamManager, close: closeTeamManager, toggle: toggleTeamManager}] = useDisclosure(false); // team manager state
-  
+  const [mapSelectorOpened, {open: openMapSelector, close: closeMapSelector}] = useDisclosure(false); // map selector state
+
   // let scenarioManager = new ScenarioManager();
 
   const newPlayer = (hero: Hero) => {
@@ -64,7 +66,7 @@ export default function ScenarioEditor() {
         </FloatingContainer>
 
         <FloatingContainer side="right" position={0}>
-          <IconButton buttonType="map" />
+          <IconButton buttonType="map" onClick={openMapSelector} />
         </FloatingContainer>
 
         <FloatingContainer side="right" position={1}>
@@ -83,6 +85,8 @@ export default function ScenarioEditor() {
         <Drawer styles={{content: {overflow: 'visible'}}} position="bottom" opened={teamManagerOpened} transitionProps={{transition: 'slide-up'}} onClose={closeTeamManager} padding="md" size="11vw" withCloseButton={false}>
           <TeamManager toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} scenarioState={scenarioState} />
         </Drawer>
+
+        <MapSelector opened={mapSelectorOpened} close={closeMapSelector} />
     
         <Map />
       </div>
