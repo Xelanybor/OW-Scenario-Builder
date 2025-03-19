@@ -8,7 +8,7 @@ import FilteredMapList from "./FilteredMapList/FilteredMapList";
 
 export default function MapList({ scenarioState } : { scenarioState: State<Scenario> }) {
 
-    const selectedGamemodeState = useState<Gamemode>('Control');
+    const selectedGamemodeState = useState<Gamemode | "">('Control');
 
     const gamemodes = Gamemode.options;
     return (

@@ -16,8 +16,7 @@ export default function MapSelector({ opened, close, scenarioState } : { opened:
         size="xl"
         padding="lg"
         >
-        <div>Map selector</div>
-
+            
         <MapList scenarioState={scenarioState} />
 
         </Modal>
