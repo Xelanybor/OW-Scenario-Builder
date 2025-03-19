@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 import { Card, Center, Group, Image, Text } from "@mantine/core";
 
 import { Map } from "@/types/Maps";
