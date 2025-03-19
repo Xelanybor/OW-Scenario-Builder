@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Tabs } from "@mantine/core";
+import { Image, Tabs } from "@mantine/core";
+import { useColorScheme } from "@mantine/hooks";
 
 import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
 import { Scenario } from "@/types/Scenario";
@@ -28,7 +29,7 @@ export default function MapList({ scenarioState } : { scenarioState: State<Scena
         <Tabs defaultValue={getGamemode(map)}>
             <Tabs.List>
                 {gamemodes.map((gamemode: Gamemode) => (
-                    <Tabs.Tab key={gamemode} value={gamemode}>
+                    <Tabs.Tab key={gamemode} value={gamemode} leftSection={<Image src={`/icons/gamemodes/${gamemode}.svg`} height={30} width={30} color="white" />}>
                         {gamemode}
                     </Tabs.Tab>
                 ))}
