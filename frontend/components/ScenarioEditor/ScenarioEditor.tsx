@@ -86,7 +86,7 @@ export default function ScenarioEditor() {
           <TeamManager toggleDrawer={toggleTeamManager} drawerOpen={teamManagerOpened} scenarioState={scenarioState} />
         </Drawer>
 
-        <MapSelector opened={mapSelectorOpened} close={closeMapSelector} />
+        <MapSelector opened={mapSelectorOpened} close={closeMapSelector} scenarioState={scenarioState} />
     
         <Map />
       </div>

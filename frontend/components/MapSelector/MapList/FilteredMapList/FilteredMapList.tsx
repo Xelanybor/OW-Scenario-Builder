@@ -1,10 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import { useDisclosure } from "@mantine/hooks";
-
-import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
 import { Collapse } from "@mantine/core";
 
-export default function FilteredMapList({ gamemode, selectedGamemodeState } : { gamemode: Gamemode, selectedGamemodeState: [Gamemode, Dispatch<SetStateAction<Gamemode>>] }) {
+import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
+import { Scenario } from "@/types/Scenario";
+import { State } from "@/types/Util";
+
+import MapTile from "./MapTile/MapTile";
+
+export default function FilteredMapList({ gamemode, selectedGamemodeState, scenarioState } : { gamemode: Gamemode, selectedGamemodeState: State<Gamemode>, scenarioState: State<Scenario> }) {
     const maps = GamemodeAvailableMaps[gamemode];
 
     const [selectedGamemode, setSelectedGamemode] = selectedGamemodeState;
@@ -16,7 +20,7 @@ export default function FilteredMapList({ gamemode, selectedGamemodeState } : { 
             </div>
             <Collapse in={gamemode === selectedGamemode}>
                 {maps.map((map: Map) => (
-                    <div key={map}>{map}</div>
+                    <MapTile key={map} map={map} scenarioState={scenarioState} />
                 ))}
             </Collapse>
         </>
