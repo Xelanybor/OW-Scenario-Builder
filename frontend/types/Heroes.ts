@@ -1,5 +1,13 @@
 import { z } from 'zod';
 
+export const HeroRole = z.enum([
+    'Damage',
+    'Tank',
+    'Support',
+])
+
+export type HeroRole = z.infer<typeof HeroRole>;
+
 export const Hero = z.enum([
     'Ana',
     'Ashe',
