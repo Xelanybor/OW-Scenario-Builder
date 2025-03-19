@@ -26,9 +26,9 @@ function HeroOption({ hero }: { hero: Hero }) {
 
 export default function HeroSelector({ hero, setHero, charge, setCharge, setChangesMade, role, closeModal }:
   { hero: Hero,
-    setHero: Dispatch<SetStateAction<Hero>>,
+    setHero: (hero: Hero) => void,
     charge: number,
-    setCharge: Dispatch<SetStateAction<number>>,
+    setCharge: (charge: number) => void,
     setChangesMade: Dispatch<SetStateAction<boolean>>,
     role: HeroRole,
     closeModal: () => void

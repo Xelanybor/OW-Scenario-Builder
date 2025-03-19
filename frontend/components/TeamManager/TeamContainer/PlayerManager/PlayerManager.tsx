@@ -15,32 +15,64 @@ import { getHeroImageName } from '@/utils/filenames'
 import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroes'
 import UltChargeIndicator from './UltChargeIndicator/UltChargeIndicator'
 import IconRole from '@/components/Icons/RoleIcons/IconRole'
+import { Scenario } from '@/types/Scenario'
 
-export default function PlayerManager({ id, teamColour } : { id: number, teamColour: React.CSSProperties['color'] }) {
+export default function PlayerManager({ teamID, playerID, teamColour, scenarioState } : { teamID: number, playerID: number, teamColour: React.CSSProperties['color'], scenarioState: [Scenario, React.Dispatch<React.SetStateAction<Scenario>>] }) {
 
   const [configureHeroOpened, {open: configureHeroOpen, close: configureHeroClose}] = useDisclosure(false);
 
   // Follow OWCS role order: Damage, Damage, Tank, Support, Support
   let role: HeroRole;
   let defaultHero: Hero;
-  if (id === 0 || id === 1) {
+  if (playerID === 0 || playerID === 1) {
     role = "Damage";
-    defaultHero = DamageHero.options[id];
+    defaultHero = DamageHero.options[playerID];
   }
-  else if (id === 2) {
+  else if (playerID === 2) {
     role = "Tank";
-    defaultHero = TankHero.options[id];
+    defaultHero = TankHero.options[playerID];
   }
   else {
     role = "Support";
-    defaultHero = SupportHero.options[id];
+    defaultHero = SupportHero.options[playerID];
   }
 
-  defaultHero = (['Cassidy', 'Mei', 'Reinhardt', 'Lúcio', 'Baptiste'] as Hero[])[id];
+  defaultHero = (['Cassidy', 'Mei', 'Reinhardt', 'Lúcio', 'Baptiste'] as Hero[])[playerID];
 
-  const [hero, setHero] = React.useState<Hero>(defaultHero);
-  const [charge, setCharge] = React.useState<number>(0);
   const [changesMade, setChangesMade] = React.useState<boolean>(false);
+  const [scenario, setScenario] = scenarioState;
+
+  const getHero = () => {
+    if (scenario.teams[teamID].players[playerID] === null) {
+      return null;
+    }
+    return scenario.teams[teamID].players[playerID].hero;
+  }
+
+  const setHero = (hero: Hero) => {
+    let newScenario = {...scenario};
+    if (newScenario.teams[teamID].players[playerID] !== null) {
+      newScenario.teams[teamID].players[playerID].hero = hero;;
+      setScenario(newScenario);
+    }
+  }
+
+  const getCharge = () => {
+    if (scenario.teams[teamID].players[playerID] === null) {
+      return 0;
+    }
+    return scenario.teams[teamID].players[playerID].ultCharge;
+  }
+
+  const setCharge = (charge: number) => {
+    let newScenario = {...scenario};
+    if (newScenario.teams[teamID].players[playerID] !== null) {
+      newScenario.teams[teamID].players[playerID].ultCharge = charge;
+      setScenario(newScenario);
+    }
+  }
+
+  console.log(scenario);
 
   return (
     <>
@@ -48,10 +80,10 @@ export default function PlayerManager({ id, teamColour } : { id: number, teamCol
         setChangesMade(false); // When the modal is opened no changes will have been made yet
         configureHeroOpen()
         }}>
-        <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(hero)}.png`} alt={hero} width={256} height={256} />
+        <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(getHero()!)}.png`} alt={getHero()!} width={256} height={256} />
         <div className={classes.footer}>
           <IconRole role={role} />
-          <UltChargeIndicator charge={charge} teamColour={teamColour} />
+          <UltChargeIndicator charge={getCharge()!} teamColour={teamColour} />
         </div>
     
       </div>
@@ -72,7 +104,7 @@ export default function PlayerManager({ id, teamColour } : { id: number, teamCol
         }}
         title={`Configure ${role} Hero`}
       >
-        <HeroSelector hero={hero} setHero={setHero} charge={charge} setCharge={setCharge} setChangesMade={setChangesMade} role={role} closeModal={configureHeroClose} />
+        <HeroSelector hero={getHero()!} setHero={setHero} charge={getCharge()!} setCharge={setCharge} setChangesMade={setChangesMade} role={role} closeModal={configureHeroClose} />
       </Modal>
     </>
   )
