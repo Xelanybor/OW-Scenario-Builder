@@ -14,17 +14,10 @@ export default function FilteredMapList({ gamemode, selectedGamemodeState, scena
     const [selectedGamemode, setSelectedGamemode] = selectedGamemodeState;
 
     return (
-        <>
-            <div onClick={() => {selectedGamemode === gamemode ? setSelectedGamemode("") : setSelectedGamemode(gamemode)}}>
-                <h2>{gamemode}</h2>
-            </div>
-            <Collapse in={gamemode === selectedGamemode}>
-                <SimpleGrid cols={2}>
-                    {maps.map((map: Map) => (
-                        <MapTile key={map} map={map} scenarioState={scenarioState} />
-                    ))}
-                </SimpleGrid>
-            </Collapse>
-        </>
+        <SimpleGrid cols={2}>
+            {maps.map((map: Map) => (
+                <MapTile key={map} map={map} scenarioState={scenarioState} />
+            ))}
+        </SimpleGrid>
     );
 }
