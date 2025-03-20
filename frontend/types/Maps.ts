@@ -114,3 +114,20 @@ export const GamemodeAvailableMaps: Record<Gamemode, Map[]> = {
     'Push': PushMap.options,
     'Clash': ClashMap.options,
 };
+
+export const DisabledMaps: Map[] = [
+    'Antarctic Peninsula',
+    'Circuit Royal',
+    'Colosseo',
+    'Esperança',
+    'Hanaoka',
+    'Midtown',
+    'New Junk City',
+    'New Queen Street',
+    'Paraíso',
+    'Runasapi',
+    'Samoa',
+    'Shambali Monastery',
+    'Suravasa',
+    'Throne of Anubis',
+];

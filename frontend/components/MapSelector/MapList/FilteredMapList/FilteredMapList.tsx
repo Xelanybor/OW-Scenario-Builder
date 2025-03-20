@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Collapse, SimpleGrid } from "@mantine/core";
 
-import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
+import { Map, Gamemode, GamemodeAvailableMaps, DisabledMaps } from "@/types/Maps";
 import { Scenario } from "@/types/Scenario";
 import { State } from "@/types/Util";
 
@@ -16,7 +16,7 @@ export default function FilteredMapList({ gamemode, selectedGamemodeState, scena
     return (
         <SimpleGrid cols={2}>
             {maps.map((map: Map) => (
-                <MapTile key={map} map={map} scenarioState={scenarioState} />
+                <MapTile key={map} map={map} scenarioState={scenarioState} disabled={DisabledMaps.includes(map)} />
             ))}
         </SimpleGrid>
     );

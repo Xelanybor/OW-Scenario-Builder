@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Image, Tabs, ScrollArea } from "@mantine/core";
+import { Image, Tabs, ScrollArea, Tooltip } from "@mantine/core";
 import { useColorScheme } from "@mantine/hooks";
 
-import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
+import { Map, Gamemode, GamemodeAvailableMaps, DisabledMaps } from "@/types/Maps";
 import { Scenario } from "@/types/Scenario";
 import { State } from "@/types/Util";
 
@@ -28,11 +28,16 @@ export default function MapList({ scenarioState } : { scenarioState: State<Scena
     return (
         <Tabs defaultValue={getGamemode(map)}>
             <Tabs.List>
-                {gamemodes.map((gamemode: Gamemode) => (
-                    <Tabs.Tab key={gamemode} value={gamemode} leftSection={<Image src={`/icons/gamemodes/${gamemode}.svg`} height={30} width={30} color="white" />}>
-                        {gamemode}
-                    </Tabs.Tab>
-                ))}
+                {gamemodes.map((gamemode: Gamemode) => {
+                    const disabled = GamemodeAvailableMaps[gamemode].every((map: Map) => DisabledMaps.includes(map));
+                    return (
+                        <Tooltip disabled={!disabled} label="Coming Soon!" key={gamemode} withArrow>
+                            <Tabs.Tab disabled={disabled} key={gamemode} value={gamemode} leftSection={<Image src={`/icons/gamemodes/${gamemode}.svg`} height={30} width={30} color="white" />}>
+                                {gamemode}
+                            </Tabs.Tab>
+                        </Tooltip>
+                    )
+                })}
             </Tabs.List>
 
                 {gamemodes.map((gamemode: Gamemode) => (

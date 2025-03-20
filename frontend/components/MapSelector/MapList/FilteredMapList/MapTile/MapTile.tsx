@@ -18,7 +18,7 @@ export default function MapTile({ map, scenarioState, disabled } : { map: Map, s
     };
 
     return (
-        <Tooltip.Floating disabled={!disabled} label={disabled ? "Coming Soon!" : ""}>
+        <Tooltip.Floating disabled={!disabled} label={"Coming Soon!"}>
             <Card radius="md" className={`${classes.mapTile} ${disabled && classes.disabled} ${selected && classes.selected}`}  onClick={() => {!disabled && setSelected(map)}}>
                 <Card.Section>
                     <Image className={classes.mapImage} src={`/maps/thumbnails/${getMapImageName(map)}.webp`} alt={map} height={160} />
