@@ -1,4 +1,4 @@
-import { Card, Center, Group, Image, Text } from "@mantine/core";
+import { Card, Group, Image, Text, Tooltip } from "@mantine/core";
 
 import { Map } from "@/types/Maps";
 import { Scenario } from "@/types/Scenario";
@@ -6,7 +6,9 @@ import { State } from "@/types/Util";
 
 import { getMapImageName } from "@/utils/filenames";
 
-export default function MapTile({ map, scenarioState } : { map: Map, scenarioState: State<Scenario> }) {
+import classes from "./MapTile.module.css";
+
+export default function MapTile({ map, scenarioState, disabled } : { map: Map, scenarioState: State<Scenario>, disabled?: boolean }) {
 
     const [scenario, setScenario] = scenarioState;
     
@@ -15,19 +17,21 @@ export default function MapTile({ map, scenarioState } : { map: Map, scenarioSta
     };
 
     return (
-        <Card radius="md" onClick={() => {setSelected(map)}}>
-            <Card.Section>
-                <Image src={`/maps/thumbnails/${getMapImageName(map)}.webp`} alt={map} height={160} />
-            </Card.Section>
-            
-            <Card.Section>
-                <Group justify="space-between">
-                    <Image src={`/maps/flags/${getMapImageName(map)}.webp`} alt={map} width={30} height={20} />
-                    <Text fw={500} ta={"center"} size="xl">
-                        {map} {map === scenarioState[0].map ? '✅' : ''}
-                    </Text>
-                </Group>
-            </Card.Section>
-        </Card>
+        <Tooltip.Floating disabled={!disabled} label={disabled ? "Coming Soon!" : ""}>
+            <Card radius="md" className={`${classes.mapTile} ${disabled && classes.disabled}`}  onClick={() => {!disabled && setSelected(map)}}>
+                <Card.Section>
+                    <Image className={classes.mapImage} src={`/maps/thumbnails/${getMapImageName(map)}.webp`} alt={map} height={160} />
+                </Card.Section>
+
+                <Card.Section>
+                    <Group justify="space-between">
+                        <Image src={`/maps/flags/${getMapImageName(map)}.webp`} alt={map} width=    {30} height={20} />
+                        <Text fw={500} ta={"center"} size="xl">
+                            {map} {map === scenarioState[0].map ? '✅' : ''}
+                        </Text>
+                    </Group>
+                </Card.Section>
+            </Card>
+        </Tooltip.Floating>
     );
 }

@@ -1,0 +1,12 @@
+.mapTile {
+  cursor: pointer;
+}
+
+.disabled {
+    filter: saturate(0%);
+    cursor: not-allowed;
+}
+
+.mapTile:hover {
+  background-color: #f0f0f0;
+}
