@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image, Tabs } from "@mantine/core";
+import { Image, Tabs, ScrollArea } from "@mantine/core";
 import { useColorScheme } from "@mantine/hooks";
 
 import { Map, Gamemode, GamemodeAvailableMaps } from "@/types/Maps";
@@ -37,7 +37,9 @@ export default function MapList({ scenarioState } : { scenarioState: State<Scena
 
                 {gamemodes.map((gamemode: Gamemode) => (
                     <Tabs.Panel key={gamemode} value={gamemode}>
+                        <ScrollArea h={420} offsetScrollbars={true}>
                         <FilteredMapList key={gamemode} gamemode={gamemode} selectedGamemodeState={selectedGamemodeState} scenarioState={scenarioState} />
+                        </ScrollArea>
                     </Tabs.Panel>
                 )
                 )}
