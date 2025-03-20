@@ -1,5 +1,14 @@
 .mapTile {
   cursor: pointer;
+  filter: saturate(50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.selected {
+    border-color: green;
+    filter: saturate(100%);
 }
 
 .disabled {

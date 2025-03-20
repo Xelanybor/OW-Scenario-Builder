@@ -11,6 +11,7 @@ import classes from "./MapTile.module.css";
 export default function MapTile({ map, scenarioState, disabled } : { map: Map, scenarioState: State<Scenario>, disabled?: boolean }) {
 
     const [scenario, setScenario] = scenarioState;
+    const selected = scenario.map === map;
     
     const setSelected = (map: Map) => {
         setScenario({ ...scenario, map });
@@ -18,7 +19,7 @@ export default function MapTile({ map, scenarioState, disabled } : { map: Map, s
 
     return (
         <Tooltip.Floating disabled={!disabled} label={disabled ? "Coming Soon!" : ""}>
-            <Card radius="md" className={`${classes.mapTile} ${disabled && classes.disabled}`}  onClick={() => {!disabled && setSelected(map)}}>
+            <Card radius="md" className={`${classes.mapTile} ${disabled && classes.disabled} ${selected && classes.selected}`}  onClick={() => {!disabled && setSelected(map)}}>
                 <Card.Section>
                     <Image className={classes.mapImage} src={`/maps/thumbnails/${getMapImageName(map)}.webp`} alt={map} height={160} />
                 </Card.Section>
@@ -27,7 +28,7 @@ export default function MapTile({ map, scenarioState, disabled } : { map: Map, s
                     <Group justify="space-between">
                         <Image src={`/maps/flags/${getMapImageName(map)}.webp`} alt={map} width=    {30} height={20} />
                         <Text fw={500} ta={"center"} size="xl">
-                            {map} {map === scenarioState[0].map ? '✅' : ''}
+                            {map} {selected ? '✅' : ''}
                         </Text>
                     </Group>
                 </Card.Section>
