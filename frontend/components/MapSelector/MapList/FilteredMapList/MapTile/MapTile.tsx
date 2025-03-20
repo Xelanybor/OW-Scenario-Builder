@@ -25,10 +25,10 @@ export default function MapTile({ map, scenarioState, disabled } : { map: Map, s
                 </Card.Section>
 
                 <Card.Section>
-                    <Group justify="space-between">
+                    <Group className={`${classes.mapTitle} ${disabled && classes.disabled} ${selected && classes.selected}`} justify="space-between">
                         <Image src={`/maps/flags/${getMapImageName(map)}.webp`} alt={map} width=    {30} height={20} />
-                        <Text fw={500} ta={"center"} size="xl">
-                            {map} {selected ? '✅' : ''}
+                        <Text fw={selected ? 700 : 500} ta={"center"} size="xl">
+                            {map}
                         </Text>
                     </Group>
                 </Card.Section>
