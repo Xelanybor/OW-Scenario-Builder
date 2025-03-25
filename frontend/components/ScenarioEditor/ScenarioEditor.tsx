@@ -32,7 +32,7 @@ export default function ScenarioEditor() {
 
   const scenarioState = React.useState<Scenario>({
     map: 'Oasis',
-    point: 0,
+    point: 2,
     teams: [
       { players: [
         newPlayer('Cassidy'),
@@ -88,7 +88,7 @@ export default function ScenarioEditor() {
 
         <MapSelector opened={mapSelectorOpened} close={closeMapSelector} scenarioState={scenarioState} />
     
-        <Map />
+        <Map scenarioState={scenarioState} />
       </div>
   )
 }
