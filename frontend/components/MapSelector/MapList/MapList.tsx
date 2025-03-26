@@ -8,7 +8,7 @@ import { State } from "@/types/Util";
 
 import FilteredMapList from "./FilteredMapList/FilteredMapList";
 
-export default function MapList({ scenarioState } : { scenarioState: State<Scenario> }) {
+export default function MapList({ scenarioState, closeMapSelector } : { scenarioState: State<Scenario>, closeMapSelector: () => void }) {
 
     const selectedGamemodeState = useState<Gamemode | "">('Control');
 
@@ -43,7 +43,7 @@ export default function MapList({ scenarioState } : { scenarioState: State<Scena
                 {gamemodes.map((gamemode: Gamemode) => (
                     <Tabs.Panel key={gamemode} value={gamemode}>
                         <ScrollArea h={420} offsetScrollbars={true}>
-                        <FilteredMapList key={gamemode} gamemode={gamemode} selectedGamemodeState={selectedGamemodeState} scenarioState={scenarioState} />
+                        <FilteredMapList key={gamemode} gamemode={gamemode} selectedGamemodeState={selectedGamemodeState} scenarioState={scenarioState} closeMapSelector={closeMapSelector} />
                         </ScrollArea>
                     </Tabs.Panel>
                 )

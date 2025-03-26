@@ -8,7 +8,7 @@ import { State } from "@/types/Util";
 
 import MapTile from "./MapTile/MapTile";
 
-export default function FilteredMapList({ gamemode, selectedGamemodeState, scenarioState } : { gamemode: Gamemode, selectedGamemodeState: State<Gamemode | "">, scenarioState: State<Scenario> }) {
+export default function FilteredMapList({ gamemode, selectedGamemodeState, scenarioState, closeMapSelector } : { gamemode: Gamemode, selectedGamemodeState: State<Gamemode | "">, scenarioState: State<Scenario>, closeMapSelector: () => void }) {
     const maps = GamemodeAvailableMaps[gamemode];
 
     const [selectedGamemode, setSelectedGamemode] = selectedGamemodeState;
@@ -16,7 +16,7 @@ export default function FilteredMapList({ gamemode, selectedGamemodeState, scena
     return (
         <SimpleGrid cols={2}>
             {maps.map((map: Map) => (
-                <MapTile key={map} map={map} scenarioState={scenarioState} disabled={DisabledMaps.includes(map)} />
+                <MapTile key={map} map={map} scenarioState={scenarioState} closeMapSelector={closeMapSelector} disabled={DisabledMaps.includes(map)} />
             ))}
         </SimpleGrid>
     );

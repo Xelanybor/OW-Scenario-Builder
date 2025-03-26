@@ -17,7 +17,7 @@ export default function MapSelector({ opened, close, scenarioState } : { opened:
         padding="lg"
         >
             
-        <MapList scenarioState={scenarioState} />
+        <MapList scenarioState={scenarioState} closeMapSelector={close} />
 
         </Modal>
     );
