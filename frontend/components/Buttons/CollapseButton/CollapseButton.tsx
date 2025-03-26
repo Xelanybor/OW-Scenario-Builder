@@ -13,11 +13,15 @@ export default function CollapseButton({ buttonType, children }: { buttonType: s
   const [opened, { toggle }] = useDisclosure(false);
   
     return (
-      <>
-        <IconButton buttonType={buttonType} onClick={toggle} />
-        <Collapse in={opened}>
-          {children}
-        </Collapse>
-      </>
+      <div className={classes.collapseButton}>
+        <div className={classes.collapseRoot}>
+          <IconButton buttonType={buttonType} onClick={toggle} />
+          <Collapse in={opened}>
+            <div className={classes.collapseContent}>
+              {children}
+            </div>
+          </Collapse>
+        </div>
+      </div>
     );
   }
