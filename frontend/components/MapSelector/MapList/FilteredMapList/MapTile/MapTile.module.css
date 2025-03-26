@@ -1,0 +1,31 @@
+.mapTile {
+  cursor: pointer;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.mapTile.disabled {
+    filter: saturate(0%);
+    cursor: not-allowed;
+}
+
+.mapTile:hover {
+    background-color: #f0f0f0;
+    border-color: rgba(250, 156, 29, 0.5);
+}
+
+.mapTile.selected {
+    border-color: #FA9C1D;
+}
+
+.mapTitle {
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #FA9C1D;
+    filter: saturate(50%);
+}
+
+.mapTitle.selected {
+    filter: saturate(100%);
+}

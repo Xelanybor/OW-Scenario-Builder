@@ -31,7 +31,7 @@ export default function ScenarioSelector() {
         <>
           <SimpleGrid cols={1}>
               {scenarios.map(scenario => {
-                  return <ScenarioTile scenario={scenario} key={scenario.id} />
+                  return <ScenarioTile scenario={scenario} key={scenario.name} />
               })}
           </SimpleGrid>
 
