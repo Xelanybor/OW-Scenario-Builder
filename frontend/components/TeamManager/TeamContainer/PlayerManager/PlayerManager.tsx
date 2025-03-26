@@ -72,8 +72,6 @@ export default function PlayerManager({ teamID, playerID, teamColour, scenarioSt
     }
   }
 
-  console.log(scenario);
-
   return (
     <>
       <div className={classes.playerContainer} onClick={() => {
