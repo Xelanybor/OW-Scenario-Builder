@@ -1,0 +1,11 @@
+.ultCharge {
+    width: 3vw;
+    height: 3vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+    border-width: 100px;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(49, 49, 49);
+  }

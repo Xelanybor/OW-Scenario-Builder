@@ -1,0 +1,12 @@
+.openTeamManagerButton {
+    position: absolute;
+    top: -2em;
+    z-index: 1000;
+}
+
+.teamContainers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

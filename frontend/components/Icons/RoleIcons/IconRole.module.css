@@ -1,0 +1,21 @@
+.roleIcon {
+  width: 3vw;
+  height: 3vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* position: absolute; */
+  padding: 0.5em;
+  border-radius: 50%;
+  border-width: 10px;
+  border-color: black;
+  background-color: white;
+  /* bottom: -2vw;
+  left: 50%;
+  transform: translateX(-50%); */
+}
+
+.roleIcon svg {
+  size: 4vw;
+}
+  
