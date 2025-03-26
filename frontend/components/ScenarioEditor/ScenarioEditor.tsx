@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Drawer } from '@mantine/core';
+import { Drawer, Text } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
 
@@ -12,6 +12,7 @@ import FloatingContainer from '@/components/FloatingContainer/FloatingContainer'
 import Map from '@/components/Map/Map'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import IconButton from '@/components/Buttons/IconButton/IconButton';
+import CollapseButton from '@/components/Buttons/CollapseButton/CollapseButton';
 
 import { Scenario } from '@/types/Scenario';
 import { Hero } from '@/types/Heroes';
@@ -62,8 +63,12 @@ export default function ScenarioEditor() {
         </FloatingContainer>
 
         <FloatingContainer side="left" position={2}>
-          <IconButton  buttonType="pencil" />
-        </FloatingContainer>
+        <CollapseButton buttonType="pencil">
+            <Text>
+              content
+            </Text>
+        </CollapseButton>
+      </FloatingContainer>
 
         <FloatingContainer side="right" position={0}>
           <IconButton buttonType="map" onClick={openMapSelector} />
