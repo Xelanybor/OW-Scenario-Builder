@@ -17,6 +17,7 @@ import CollapseButton from '@/components/Buttons/CollapseButton/CollapseButton';
 import { Scenario } from '@/types/Scenario';
 import { Hero } from '@/types/Heroes';
 import MapSelector from '../MapSelector/MapSelector';
+import DrawPanel from '../Drawing/DrawPanel/DrawPanel';
 
 export default function ScenarioEditor() {
 
@@ -64,9 +65,7 @@ export default function ScenarioEditor() {
 
         <FloatingContainer side="left" position={2}>
         <CollapseButton buttonType="pencil">
-            <Text>
-              content
-            </Text>
+            <DrawPanel />
         </CollapseButton>
       </FloatingContainer>
 
