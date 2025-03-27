@@ -4,8 +4,6 @@ import React from "react";
 
 import classes from './FloatingContainer.module.css'
 
-import IconButton from "../Buttons/IconButton/IconButton";
-
 interface FloatingContainerProps {
   side?: string;
   position?: number;

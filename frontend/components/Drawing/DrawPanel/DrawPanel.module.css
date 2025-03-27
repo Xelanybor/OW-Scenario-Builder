@@ -1,0 +1,20 @@
+.drawPanel {
+    padding: 2%;
+    display: grid;
+    columns: 2;
+}
+
+.drawButton {
+    width: 16px;
+    height: 16px;
+}
+
+.drawButton.top {
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
+.drawButton > img {
+    width: 16px;
+    height: 16px;
+}

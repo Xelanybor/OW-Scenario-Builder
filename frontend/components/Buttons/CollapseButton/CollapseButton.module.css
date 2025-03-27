@@ -1,0 +1,14 @@
+.collapseButton {
+  width: 100%;
+  height: 100%;
+}
+
+.collapseContent {
+  padding: 5% 5% 30%;
+}
+
+.collapseRoot {
+  background-color: rgb(196, 196, 196);
+  border-radius: 50rem;
+  cursor: default;
+}
