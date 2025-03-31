@@ -1,0 +1,28 @@
+.heroIcon {
+    width: 3em;
+    height: 3em;
+}
+
+.heroIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #218ffe;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ultIndicator {
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    bottom: 0;
+    left: 0.75em;
+}
+
+/* .ultIndicator.ultIconCheck {
+    
+} */

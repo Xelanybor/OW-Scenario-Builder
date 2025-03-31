@@ -3,9 +3,12 @@
 import React from "react";
 
 import classes from './Map.module.css'
+import markerClasses from './HeroMarker/HeroMarker.module.css'
 
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import Draggable from "react-draggable";
+
+import HeroMarker from "./HeroMarker/HeroMarker";
 
 import { State } from "@/types/Util";
 import { Scenario } from "@/types/Scenario";
@@ -32,17 +35,20 @@ export default function Map({ scenarioState } : { scenarioState: State<Scenario>
   
   // Change the Draggable component scale to match the zoom level of the map, so that the player icon follows the mouse when dragged
   const onZoomStop = (ref: ReactZoomPanPinchRef) => {
-    console.log(ref.state.scale);
     setMapScale(ref.state.scale);
   };
 
   return (
     <div className={classes.mapContainer} style={style}>
-      <TransformWrapper onZoomStop={onZoomStop} initialScale={initialScale} panning={{excluded: [classes.playerIcon]}}>
+      <TransformWrapper onZoomStop={onZoomStop} initialScale={initialScale} panning={{excluded: [markerClasses.heroIcon]}}>
         <TransformComponent>
-          <Draggable nodeRef={nodeRef} scale={mapScale}>
-            <div ref={nodeRef} className={classes.playerIcon}>bruh</div>
-          </Draggable>
+          <div style={{position: 'absolute'}}>
+            <Draggable nodeRef={nodeRef} scale={mapScale}>
+              <div ref={nodeRef}>
+                <HeroMarker hero={'Ana'} team={0} ultCharge={100} ref={nodeRef} className=  {classes.playerIcon} />
+              </div>
+            </Draggable>
+          </div>
           <img src={mapFileName} alt="map" />
         </TransformComponent>
       </TransformWrapper>
