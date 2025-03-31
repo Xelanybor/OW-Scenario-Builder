@@ -26,10 +26,6 @@ export default function Map({ scenarioState } : { scenarioState: State<Scenario>
 
   const mapFileName = `/maps/${getMapImageName(scenario.map)}${point}.png`;
 
-
-  // For react-draggable component
-  const nodeRef = React.useRef(null);
-
   const initialScale = 1;
   const [mapScale, setMapScale] = React.useState(initialScale);
   
@@ -43,11 +39,22 @@ export default function Map({ scenarioState } : { scenarioState: State<Scenario>
       <TransformWrapper onZoomStop={onZoomStop} initialScale={initialScale} panning={{excluded: [markerClasses.heroIcon]}}>
         <TransformComponent>
           <div style={{position: 'absolute'}}>
-            <Draggable nodeRef={nodeRef} scale={mapScale}>
-              <div ref={nodeRef}>
-                <HeroMarker hero={'Ana'} team={0} ultCharge={100} ref={nodeRef} className=  {classes.playerIcon} />
-              </div>
-            </Draggable>
+            { scenario.teams.map((team, teamID) => {
+              return team.players.map((player, playerID) => {
+                
+                // For react-draggable component
+                const nodeRef = React.useRef(null);
+
+                if (player) return (
+                  <Draggable key={playerID} nodeRef={nodeRef} scale={mapScale}>
+                    <div ref={nodeRef}>
+                      <HeroMarker hero={player.hero} team={teamID} ultCharge={player.ultCharge} ref={nodeRef} className={classes.playerIcon} />
+                    </div>
+                  </Draggable>
+                );
+              });
+            })
+          }
           </div>
           <img src={mapFileName} alt="map" />
         </TransformComponent>
