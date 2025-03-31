@@ -9,8 +9,9 @@
     object-fit: cover;
     border-radius: 50%;
     border-style: solid;
-    border-color: #218ffe;
+    border-color: #218ffe; /* should be overwritten by team colour */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgb(49, 49, 49);
 }
 
 .ultIndicator {

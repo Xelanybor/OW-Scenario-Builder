@@ -16,8 +16,9 @@ import { Hero, SupportHero, DamageHero, TankHero, HeroRole } from '@/types/Heroe
 import UltChargeIndicator from './UltChargeIndicator/UltChargeIndicator'
 import IconRole from '@/components/Icons/RoleIcons/IconRole'
 import { Scenario } from '@/types/Scenario'
+import { getTeamColor } from '@/utils/colors'
 
-export default function PlayerManager({ teamID, playerID, teamColour, scenarioState } : { teamID: number, playerID: number, teamColour: React.CSSProperties['color'], scenarioState: [Scenario, React.Dispatch<React.SetStateAction<Scenario>>] }) {
+export default function PlayerManager({ teamID, playerID, scenarioState } : { teamID: number, playerID: number, scenarioState: [Scenario, React.Dispatch<React.SetStateAction<Scenario>>] }) {
 
   const [configureHeroOpened, {open: configureHeroOpen, close: configureHeroClose}] = useDisclosure(false);
 
@@ -81,7 +82,7 @@ export default function PlayerManager({ teamID, playerID, teamColour, scenarioSt
         <Image className={classes.heroImage} src={`/heroes/${getHeroImageName(getHero()!)}.png`} alt={getHero()!} width={256} height={256} />
         <div className={classes.footer}>
           <IconRole role={role} />
-          <UltChargeIndicator charge={getCharge()!} teamColour={teamColour} />
+          <UltChargeIndicator charge={getCharge()!} teamColour={getTeamColor(teamID)} />
         </div>
     
       </div>
