@@ -4,7 +4,9 @@ import React from "react";
 
 import classes from './Map.module.css'
 
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
+import Draggable from "react-draggable";
+
 import { State } from "@/types/Util";
 import { Scenario } from "@/types/Scenario";
 import { GamemodeAvailableMaps } from "@/types/Maps";
@@ -22,10 +24,25 @@ export default function Map({ scenarioState } : { scenarioState: State<Scenario>
   const mapFileName = `/maps/${getMapImageName(scenario.map)}${point}.png`;
 
 
+  // For react-draggable component
+  const nodeRef = React.useRef(null);
+
+  const initialScale = 1;
+  const [mapScale, setMapScale] = React.useState(initialScale);
+  
+  // Change the Draggable component scale to match the zoom level of the map, so that the player icon follows the mouse when dragged
+  const onZoomStop = (ref: ReactZoomPanPinchRef) => {
+    console.log(ref.state.scale);
+    setMapScale(ref.state.scale);
+  };
+
   return (
     <div className={classes.mapContainer} style={style}>
-      <TransformWrapper initialScale={1}>
+      <TransformWrapper onZoomStop={onZoomStop} initialScale={initialScale} panning={{excluded: [classes.playerIcon]}}>
         <TransformComponent>
+          <Draggable nodeRef={nodeRef} scale={mapScale}>
+            <div ref={nodeRef} className={classes.playerIcon}>bruh</div>
+          </Draggable>
           <img src={mapFileName} alt="map" />
         </TransformComponent>
       </TransformWrapper>
